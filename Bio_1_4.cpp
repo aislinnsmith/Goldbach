@@ -1,3 +1,5 @@
+//This was a failed attempt//
+
 #include<iostream>
 #include<cmath> 
 #include<string>
