@@ -52,40 +52,50 @@
  end module
  
  
-  program Goldbach
-  use Prime_Number
-  implicit none  
-  integer :: p = 1
-  integer :: q = 1
-  integer :: r
-  integer :: a,b
-  integer :: rows
-  integer :: sums
-  integer :: run
-  integer :: i
-  integer, dimension (1000,3) :: my_goldbach
- 
-  do a  = 0,100,1
-    p = GetNextPrime(p)
- !  print *,p
-  do
-    q = GetNextPrime(q)
-    sums = p + (p-q)
-    print *, (p-q)
-    if (IsPrime(sums)) then
-    r = sums
-    !print *,r
-    my_goldbach(a,1) = r
-    my_goldbach(a,2) = q
-    my_goldbach(a,3) = q
-    q = 1
-    exit
-   end if
-  end do
-  end do
- 
- 
- 
- 
-  end program
+
+   program Goldbach
+ 57 use Prime_Number
+ 58 implicit none
+ 59 integer :: p = 5
+ 60 integer :: q
+ 61 integer :: r
+ 62 integer :: a,b
+ 63 integer :: rows
+ 64 integer :: sums
+ 65 integer :: run
+ 66 integer :: i
+ 67 integer, dimension (1000) :: my_goldbach
+ 68
+ 69 do a  = 1,1000,1
+ 70   p = GetNextPrime(p)
+ 71   q = p
+ 72 !  print *,p
+ 73 do
+ 74
+ 75   q = GetNextPrime(q)
+ 76   sums = p + (q-p)
+ 77
+ 78   if (IsPrime(sums)) then
+ 79  !print *, (q-p)
+ 80   r = sums
+ 81   !print *,r
+ 82   my_goldbach(a) = (q-p)
+ 83
+ 84   exit
+ 85   end if
+ 86 end do
+ 87 end do
+ 88
+ 89 !print *,size(my_goldbach(:,1))
+ 90
+ 91 !print *, my_goldbach(:,3)
+ 92
+ 93 do i = 1,1000, 1
+ 94
+ 95 print *,my_goldbach(i)
+ 96
+ 97 end do
+ 98
+ 99 end program
+
  
