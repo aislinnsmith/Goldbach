@@ -56,40 +56,49 @@ end do
 program Goldbach
 use Prime_Number 
 implicit none
-integer :: p = 1 
-integer :: q = 1
+integer :: p = 5 
+integer :: q  
 integer :: r
 integer :: a,b
 integer :: rows 
 integer :: sums
 integer :: run
 integer :: i
-integer, dimension (1000,3) :: my_goldbach
+integer, dimension (1000) :: my_goldbach
 
-do a  = 0,100,1
-  p = GetNextPrime(p) 
+do a  = 1,1000,1
+  p = GetNextPrime(p)
+  q = p 
 !  print *,p
 do
+  
   q = GetNextPrime(q) 
-  sums = p + (p-q) 
-  print *, (p-q)
-  if (IsPrime(sums)) then 
+  sums = p - (q-p) 
+  
+  if (IsPrime(sums)) then
+  !print *, (q-p), r
   r = sums
   !print *,r 
-  my_goldbach(a,1) = r
-  my_goldbach(a,2) = q
-  my_goldbach(a,3) = q
-  q = 1
+  my_goldbach(a) = (q-p) 
+  
   exit 
   end if 
 end do 
 end do 
 
+!print *,size(my_goldbach(:,1)) 
 
+!print *, my_goldbach(:,3) 
 
+do i = 1,1000,1  
+
+print *,my_goldbach(i)
+
+end do 
 
 end program 
 
 
 
 
+#Goldbach_backup
