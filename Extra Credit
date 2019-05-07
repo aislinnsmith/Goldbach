@@ -1,0 +1,29 @@
+  2 implicit none
+  3 integer, dimension(5,5) ::  temp,fin
+  4 real :: rand_real
+  5 integer :: rand_int
+  6 real :: r
+  7 real :: c
+  8 integer :: i,j
+  9 do r = 1,5,1
+ 10 do c = 1,5,1
+ 11    call RANDOM_NUMBER(rand_real)
+ 12    rand_int = floor(rand_real*10)
+ 13    temp(r,c) = rand_int
+ 14 end do
+ 15 end do
+ 16 print *,temp(5,5)
+ 17
+ 18 fin = temp
+ 19
+ 20 FORALL(i = 1:5) fin(i,i) = (abs(sum(temp(i,:)) + 1))
+ 21
+ 22 !!if abs(temp(i,i)) .le.(abs(sum (temp(i,:)) - temp(i,i))) then
+ 23
+ 24 Print *,fin
+ do j = 1,5,1
+ 24 Print *,fin(j,:)
+ 25 end do
+
+
+end program 

@@ -1,0 +1,101 @@
+ module Prime_number
+  implicit none
+  
+  contains
+  
+  integer function GetNextPrime(a)
+  implicit none
+  integer :: a
+  integer :: b
+  b = a + 1
+    do
+      if (IsPrime(b)) then
+         GetNextPrime = b
+         exit
+     end if
+   b = b + 1
+ end do
+
+ end function
+ integer function GetPreviousPrime(a)
+ implicit none
+ integer :: a
+ integer :: b
+ integer :: start_num
+ start_num = a-1
+ do b = start_num,0,-1
+       if (IsPrime(b)) then
+           GetPreviousPrime = b
+           exit
+       end if
+     end do
+ 
+   end function
+   logical function IsPrime(a)
+     implicit none
+     integer :: a
+     integer :: b
+     integer :: max_num
+ 
+     max_num = a - 1
+ 
+     do b = 2,max_num,1
+       if (MOD(a,b) == 0) then
+         IsPrime = .false.
+         exit
+       else
+         IsPrime = .true.
+       end if
+  end do
+ 
+   end function
+ end module
+ 
+ 
+
+   program Goldbach
+ 57 use Prime_Number
+ 58 implicit none
+ 59 integer :: p = 5
+ 60 integer :: q
+ 61 integer :: r
+ 62 integer :: a,b
+ 63 integer :: rows
+ 64 integer :: sums
+ 65 integer :: run
+ 66 integer :: i
+ 67 integer, dimension (1000) :: my_goldbach
+ 68
+ 69 do a  = 1,1000,1
+ 70   p = GetNextPrime(p)
+ 71   q = p
+ 72 !  print *,p
+ 73 do
+ 74
+ 75   q = GetNextPrime(q)
+ 76   sums = p + (q-p)
+ 77
+ 78   if (IsPrime(sums)) then
+ 79  !print *, (q-p)
+ 80   r = sums
+ 81   !print *,r
+ 82   my_goldbach(a) = (q-p)
+ 83
+ 84   exit
+ 85   end if
+ 86 end do
+ 87 end do
+ 88
+ 89 !print *,size(my_goldbach(:,1))
+ 90
+ 91 !print *, my_goldbach(:,3)
+ 92
+ 93 do i = 1,1000, 1
+ 94
+ 95 print *,my_goldbach(i)
+ 96
+ 97 end do
+ 98
+ 99 end program
+
+ 
