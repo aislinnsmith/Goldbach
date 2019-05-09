@@ -64,9 +64,9 @@ integer :: rows
 integer :: sums
 integer :: run
 integer :: i
-integer, dimension (9999) :: my_goldbach
+integer, dimension (10000) :: my_goldbach
 
-do a  = 1,9999,1
+do a  = 1,10000,1
   p = GetNextPrime(p)
   q = p 
 !  print *,p
@@ -90,7 +90,7 @@ end do
 
 !print *, my_goldbach(:,3) 
 
-do i = 1,9999,1  
+do i = 1,10000,1  
 
 print *,my_goldbach(i)
 
